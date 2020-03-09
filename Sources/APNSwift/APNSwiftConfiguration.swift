@@ -249,8 +249,16 @@ extension APNSwiftConfiguration {
 }
 
 extension APNSwiftConnection {
+
     public enum PushType: String {
+
         case alert
         case background
+        /// Use the complication push type for notifications that contain update information for a watchOS app’s complications. For more information, see Updating Your Timeline.
+        /// If you set this push type, the apns-topic header field must use your app’s bundle ID with .complication appended to the end. If you’re using certificate-based authentication, you must also register the certificate for WatchKit services. The topic is then part of the 1.2.840.113635.100.6.3.6 extension.
+        /// The complication push type is recommended for watchOS and iOS. It is not available on macOS, tvOS, and iPadOS.
+        case complication
+
     }
+
 }
