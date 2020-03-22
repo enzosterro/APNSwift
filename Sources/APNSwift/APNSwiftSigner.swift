@@ -32,6 +32,12 @@ public struct APNSwiftSigner {
         self.buffer = mutableByteBuffer
     }
 
+    public init(data: Data) {
+        var mutableByteBuffer = ByteBufferAllocator().buffer(capacity: data.count)
+        mutableByteBuffer.writeBytes(data)
+        self.buffer = mutableByteBuffer
+    }
+
     internal func sign(digest: ByteBuffer) throws -> ByteBuffer {
         let bio = BIO_new(BIO_s_mem())
         defer { BIO_free(bio) }
